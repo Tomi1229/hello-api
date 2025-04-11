@@ -1,0 +1,15 @@
+stages:
+  - build
+  - test
+
+build_backend:
+  stage: build
+  script:
+    - docker build -t hello-api-backend ./backend
+
+test_backend:
+  stage: test
+  image: python:3.11
+  script:
+    - pip install -r backend/requirements.txt
+    - pytest backend/tests
